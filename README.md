@@ -24,9 +24,10 @@
 ## 📁 폴더 구조
 ```
 Part2_Team2/
-  ├── 01-Daily_Mission/       # 데일리 미션 출제 및 실습 코드
-  ├── guides/                 # 사용법 또는 기술 가이드
-  ├── projects/               # 팀 프로젝트 진행
+  ├── 01-Daily_Mission/                        # 데일리 미션 출제 및 실습 코드
+  ├── guides/                                  # 사용법 또는 기술 가이드
+  ├── projects/                                # 팀 프로젝트 진행
+  ├── projects/TroubleShooting.md              # 오류 해결 기록
   └── README.md
 
 ```
