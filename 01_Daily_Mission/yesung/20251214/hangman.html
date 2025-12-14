@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>행맨 게임</title>
+    <!-- CSS 추가-->
+    <link rel="stylesheet" href="./hangman.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <h1>행맨 게임 😈</h1>
+      <p id="word-display">_ _ _ _ _</p>
+      <p id="feedback-message"></p>
+
+      <input type="text" id="guess-input" maxlength="1" placeholder="A-Z" />
+      <button id="guess-button">추측하기</button>
+      <button id="restart-button" style="display: none; margin-top: 20px">
+        다시 시작
+      </button>
+
+      <p id="attempts-left">남은 기회: <span>6</span>번</p>
+      <p id="guessed-letters">이미 추측한 문자: <span>없음</span></p>
+    </div>
+
+    <script src="./hangman.js"></script>
+  </body>
+</html>
