@@ -86,6 +86,12 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  input["number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
 
 `;
 
