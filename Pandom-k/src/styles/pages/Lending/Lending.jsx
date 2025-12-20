@@ -74,7 +74,7 @@ export const LendingTop = styled.section`
     height: 1200px;
 
     &:before {
-      transform: translateY(220px) scale(1.2);
+      transform: translateY(220px) scale(1.1);
     }
   }
 
