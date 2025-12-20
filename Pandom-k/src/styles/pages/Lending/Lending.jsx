@@ -43,12 +43,15 @@ export const LendingWrap = styled.div`
 `;
 
 export const LendingTop = styled.section`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 1080px;
   padding: 0 0 120px;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
 
   > button {
     margin-top: auto;
@@ -58,7 +61,11 @@ export const LendingTop = styled.section`
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url(${ImgIntro}) no-repeat top center;
+    background: url(${ImgIntro}) no-repeat top center / contain;
+    transform: translateY(0) scale(1);
+    transform-origin: top center;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
     z-index: -1;
     content: '';
   }
@@ -67,8 +74,7 @@ export const LendingTop = styled.section`
     height: 1200px;
 
     &:before {
-      top: 249px;
-      background-size: 827px auto;
+      transform: translateY(220px) scale(1.2);
     }
   }
 
@@ -77,9 +83,7 @@ export const LendingTop = styled.section`
     padding: 0 72px 100px;
 
     &:before {
-      top: 178px;
-      max-height: 456px;
-      background-size: 456px auto;
+      transform: translateY(178px) scale(1.2);
     }
   }
 `;
@@ -217,8 +221,9 @@ export const Section = styled.section`
     padding: 93px 0 77px;
 
     &:before {
-      width: 744px;
+      max-width: 744px;
     }
+
     > img {
       width: 240px;
     }
