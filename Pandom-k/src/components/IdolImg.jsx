@@ -1,32 +1,17 @@
-import checkIcon from '../../assets/icons/check.svg';
+import checkIcon from '../images/IconCheck.svg';
 import ImgBorder from './IdolImg.js';
-import deleteButton from '../../assets/icons/btn_delete.svg';
 
-const IdolImg = ({ src, isChecked, onClick, showCloseButton, onRemove, name, group }) => {
+const IdolImg = ({ src, isChecked, onSelected }) => {
   return (
-    <>
-      <ImgBorder $isActive={isChecked} onClick={onClick}>
-        <img src={src} className="profileImg" alt="profile" />
-        {!showCloseButton && (
-          <div className="idolOverlay">
-            <img src={checkIcon} className="checkedIcon" alt="checked" />
-          </div>
-        )}
-
-        {showCloseButton && (
-          <img
-            src={deleteButton}
-            className="removeBtn"
-            onClick={(e) => {
-              e.stopPropagation(); // 클릭 시 부모의 onClick(토글)이 실행되지 않도록 방지
-              onRemove();
-            }}
-          />
-        )}
-      </ImgBorder>
-      <h3>{name}</h3>
-      <h4>{group}</h4>
-    </>
+    <ImgBorder $isChecked={isChecked} onClick={onSelected}>
+      <img src={src} className="profileImg" alt="profile" />
+      {/* 체크되었을 때만 핑크 오버레이 표시 */}
+      {isChecked && (
+        <div className="idolOverlay">
+          <img src={checkIcon} className="checkedIcon" alt="checked" />
+        </div>
+      )}
+    </ImgBorder>
   );
 };
 

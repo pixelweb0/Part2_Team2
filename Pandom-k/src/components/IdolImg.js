@@ -25,7 +25,7 @@ const ImgBorder = styled.div`
     position: absolute;
     width: 115px;
     height: 115px;
-    display: ${(props) => (props.$isActive ? 'flex' : 'none')};
+    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -36,14 +36,6 @@ const ImgBorder = styled.div`
   .checkedIcon {
     width: 53px;
     height: 53px;
-  }
-
-  & .removeBtn {
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    right: 0px;
-    top: 15px;
   }
 `;
 
