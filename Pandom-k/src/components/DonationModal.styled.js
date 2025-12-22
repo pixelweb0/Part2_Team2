@@ -1,42 +1,85 @@
 import styled from "styled-components";
-import creditImg from "../assets/icons/credit.svg";
 
-export const Input = styled.input`
-  background-color: #272f3d;
-  background-image: url(${creditImg});
-  background-repeat: no-repeat;
-  background-position: 279px center;
-  background-size: 24px;
-  padding-left: 48px;
-  max-width: 295px;
-  max-height: 58px;
+export const IdolContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+`
+
+export const IdolImage = styled.img`
+  width: 158px;
+  height: 206px;
   border-radius: 8px;
-  border: 1px solid ${({ $error }) => ($error ? "#ff2626" : "#ffffff")};;
+  object-fit: cover;
+`
+
+export const IdolTitle = styled.div`
+  width: 158px;
+  text-align: left;
+  span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+  }
+`
+
+export const IdolInfo = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: #f7f7f8;
+`
+
+export const InputWrap = styled.div`
+  position: relative;
+  width: 295px;
+  margin-bottom: -16px;
+`
+
+export const DonateInput = styled.input`
+  background-color: #272f3d;
+  width: 100%;
+  height: 58px;
+  padding: 16px 48px 16px 16px;
+
   font-size: 20px;
-  font-family: Pretendard;
   font-weight: 700;
   color: #ffffff;
   line-height: 26px;
-  padding: 16px;
-
+  border: 1px solid ${({ $error }) => ($error ? "#ff3b3b" : "#f7f7f8")};
+  border-radius: 8px;
 
   &:focus {
     outline: none;
-    border-color: ${({ $error }) => ($error ? "#ff2626" : "#6ea8ff")};
+    border: 1px solid ${({ $error }) => ($error ? "#ff3b3b" : "#f7f7f8")};
   }
-
-  transition: border-color 0.2s ease;
 `;
 
+export const Credit = styled.img`
+  position: absolute;
+  right: 16px;
+  top: 29px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+`
+
+export const ErrorSlot = styled.div`
+  height: 24px;
+`
+
 export const ErrorMessage = styled.div`
-  margin-top: 6px;
+  text-align: left;
+  padding-top: 6px;
   font-size: 12px;
   color: #ff2626;
   font-weight: 600;
 `
 
-export const Button = styled.button`
-  background-color: #828282;
+export const DonateButton = styled.button`
+  background: ${({ disabled }) => disabled ? '#828282' : 'linear-gradient(90deg, #f86f76 0%, #fe5493 100%)'};
   width: 295px;
   height: 42px;
   border-radius: 3px;
@@ -46,4 +89,9 @@ export const Button = styled.button`
   font-family: Pretendard;
   line-height: 26px;
   letter-spacing: 2%;
+`;
+
+export const SuccessIcon = styled.img`
+  width: 113px;
+  height: 113px;
 `;
