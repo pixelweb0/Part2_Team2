@@ -64,6 +64,7 @@ const Donation = ({ apiData }) => {
             <img src={IconArrowNext} alt="다음 슬라이드" />
           </button>}
         </CarouselContainer>
+        
       </DonationContainer>
       
     </>
