@@ -1,4 +1,4 @@
-import { DonationContainer, DonationHeader } from '../../../styles/pages/list/Donation';
+import { DonationContainer, DonationHeader, CarouselContainer } from '../../../styles/pages/list/Donation';
 import { T2 } from '../../../styles/Typography';
 import useEmblaCarousel from 'embla-carousel-react';
 import IconArrowPrev from '../../../images/BtnArrowPrev.svg'; 
@@ -47,21 +47,23 @@ const Donation = ({ apiData }) => {
         <DonationHeader>
           <T2>후원을 기다리는 조공</T2>
         </DonationHeader>
-        <div className="embla" ref={emblaRef}>
-          <div className="embla__container">
-            {list.map((artist) => (
-              <div className="embla__slide" key={artist.id}>
-                <ProfileCard artist={artist} />
-              </div>
-            ))}
+        <CarouselContainer>
+          <div className="embla" ref={emblaRef}>
+            <div className="embla__container">
+              {list.map((artist) => (
+                <div className="embla__slide" key={artist.id}>
+                  <ProfileCard artist={artist} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        {canScrollPrev && <button className="embla__button embla__button--prev" onClick={scrollPrev}>
-          <img src={IconArrowPrev} alt="이전 슬라이드" />
-        </button>}
-        {canScrollNext && <button className="embla__button embla__button--next" onClick={scrollNext}>
-          <img src={IconArrowNext} alt="다음 슬라이드" />
-        </button>}
+          {canScrollPrev && <button className="embla__button embla__button--prev" onClick={scrollPrev}>
+            <img src={IconArrowPrev} alt="이전 슬라이드" />
+          </button>}
+          {canScrollNext && <button className="embla__button embla__button--next" onClick={scrollNext}>
+            <img src={IconArrowNext} alt="다음 슬라이드" />
+          </button>}
+        </CarouselContainer>
       </DonationContainer>
       
     </>
