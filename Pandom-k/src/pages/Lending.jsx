@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import {
   inViewMotionProps,
-  fadeIn,
   fadeInDown,
   fadeInLeft,
   fadeInRight,
@@ -21,12 +21,58 @@ const MotionTitle = motion(Title);
 
 const Lending = () => {
   const navigate = useNavigate();
+  const [isReady, setIsReady] = useState(false);
 
   const handleStartClick = () => {
     // localStorage 초기화
     localStorage.clear();
     navigate('/list');
   };
+
+  useEffect(() => {
+    const imageList = [ImgPhone1, ImgPhone2, ImgPhone3];
+
+    const cacheImages = async (srcArray) => {
+      const startTime = Date.now();
+      const minLoadingTime = 800; // 최소 로딩 시간 (800ms)
+
+      const promises = srcArray.map((src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = reject;
+        });
+      });
+
+      try {
+        await Promise.all(promises);
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+
+        // 최소 로딩 시간을 보장하기 위해 남은 시간만큼 대기
+        await new Promise((resolve) => setTimeout(resolve, remainingTime));
+        setIsReady(true);
+      } catch (err) {
+        console.error('이미지 로딩 중 에러 발생', err);
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+        await new Promise((resolve) => setTimeout(resolve, remainingTime));
+        setIsReady(true);
+      }
+    };
+
+    cacheImages(imageList);
+  }, []);
+
+  if (!isReady) {
+    return (
+      <div style={{}}>
+        <div style={{}} />
+        <h2 class="loading">로딩중...</h2>
+      </div>
+    );
+  }
 
   return (
     <>
