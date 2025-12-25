@@ -15,7 +15,7 @@ export const MonthlyChartContainer = styled.section`
   padding-top: 50px;
   @media ${device.mobile} {
     padding-top: 40px;
-  } 
+  }
 `;
 
 export const ChartHeader = styled.div`
@@ -25,17 +25,17 @@ export const ChartHeader = styled.div`
   margin-bottom: 24px;
   @media ${device.mobile} {
     margin-bottom: 16px;
-  } 
+  }
 `;
 
 export const VoteButton = styled(Button)`
-  display: inline-flex;  
+  display: inline-flex;
   align-items: center;
-  padding:4px 14px;
-  gap: 4px; 
+  padding: 4px 14px;
+  gap: 4px;
   @media ${device.mobile} {
     font-size: 13px;
-  }            
+  }
 `;
 
 export const VoteIcon = styled.img`
@@ -46,7 +46,7 @@ export const VoteIcon = styled.img`
 
 export const TabGroup = styled.div`
   display: flex;
-  width:100%;
+  width: 100%;
   height: 42px;
   margin-bottom: 24px;
 `;
@@ -56,11 +56,9 @@ export const ChartTabButton = styled.button`
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-  background: ${({ $active }) =>
-    $active ? 'rgba(255, 255, 255, 0.1)' : 'transparent'};
+  background: ${({ $active }) => ($active ? 'rgba(255, 255, 255, 0.1)' : 'transparent')};
   border: none;
-  border-bottom: ${({ $active }) =>
-    $active ? '1px solid #fff' : '1px solid transparent'};
+  border-bottom: ${({ $active }) => ($active ? '1px solid #fff' : '1px solid transparent')};
   color: ${({ $active }) => ($active ? '#fff' : '#828282')};
   font-size: 14px;
   font-weight: 400;
@@ -86,13 +84,13 @@ export const ChartTabButton = styled.button`
 export const TabContent = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 // IdolList 컴포넌트
 export const ListContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 20px 40px; 
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 40px;
   width: 100%;
 
   @media (max-width: 1024px) {
@@ -106,7 +104,7 @@ export const ListItem = styled.li`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
 export const IdolInfo = styled.div`
@@ -114,21 +112,21 @@ export const IdolInfo = styled.div`
   align-items: center;
   gap: 12px;
 `;
-//임시 프로필 이미지 
+//임시 프로필 이미지
 export const ImgProfile = styled.img`
-  display:inline-flex;  
-  width:70px;
-  height:70px;
+  display: inline-flex;
+  width: 70px;
+  height: 70px;
   background-color: gray;
   border-radius: 50%;
   object-fit: cover;
-`
+`;
 
 export const RankText = styled.span`
   font-size: 16px;
   font-weight: 400;
   color: ${palette.primary};
-  width:16px;
+  width: 16px;
   @media ${device.mobile} {
     font-size: 14px;
   }
@@ -141,7 +139,7 @@ export const NameText = styled.span`
   @media ${device.mobile} {
     font-size: 14px;
   }
-  
+
   strong {
     font-weight: 500;
     margin-right: 4px;
@@ -152,7 +150,7 @@ export const NameText = styled.span`
 export const VoteText = styled.span`
   font-size: 16px;
   color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap; 
+  white-space: nowrap;
   @media ${device.mobile} {
     font-size: 14px;
   }
@@ -166,7 +164,7 @@ export const MoreButton = styled.button`
   border: 1px solid rgba(241, 238, 249, 0.8);
   border-radius: 3px;
   margin: 51px auto 51px;
-  font-size:14px;
+  font-size: 14px;
   font-weight: 700;
   @media ${device.mobile} {
     margin: 27px 0;
@@ -174,10 +172,4 @@ export const MoreButton = styled.button`
   @media ${device.mobile} {
     margin: 33px 0;
   }
-
-`
-
-
-
-
-
+`;

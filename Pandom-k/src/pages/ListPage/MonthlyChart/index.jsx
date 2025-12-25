@@ -1,9 +1,17 @@
-import { MonthlyChartContainer, ChartHeader, VoteButton, VoteIcon, TabGroup, ChartTabButton, TabContent } from '../../../styles/pages/list/MonthlyChart'
+import {
+  MonthlyChartContainer,
+  ChartHeader,
+  VoteButton,
+  VoteIcon,
+  TabGroup,
+  ChartTabButton,
+  TabContent,
+} from '../../../styles/pages/list/MonthlyChart';
 import { T2 } from '../../../styles/Typography';
 import IconBtnChart from '../../../images/IconBtnChart.png';
 import { useState, useEffect } from 'react';
 import IdolList from './components/IdolList';
-import { getCharts } from "../../../apis/chart";
+import { getCharts } from '../../../apis/chart';
 
 const TABS_DATA = [
   {
@@ -19,18 +27,20 @@ const TABS_DATA = [
 ];
 
 const MonthlyChart = () => {
-
   const [activeTab, setActiveTab] = useState(TABS_DATA[0].id);
   const [chartData, setChartData] = useState([]);
-  const currentTab = TABS_DATA.find(tab => tab.id === activeTab); 
+  const [isLoading, setIsLoading] = useState(true);
+  const currentTab = TABS_DATA.find((tab) => tab.id === activeTab);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getCharts({ gender: currentTab.type });
-        setChartData(response.idols); 
+        setChartData(response.idols);
       } catch (error) {
-        console.error("데이터 로딩 실패", error);
+        console.error('데이터 로딩 실패', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -48,7 +58,7 @@ const MonthlyChart = () => {
           </VoteButton>
         </ChartHeader>
         <TabGroup>
-          {TABS_DATA.map(tab => (
+          {TABS_DATA.map((tab) => (
             <ChartTabButton
               key={tab.id}
               $active={activeTab === tab.id}
@@ -59,13 +69,11 @@ const MonthlyChart = () => {
           ))}
         </TabGroup>
         <TabContent>
-          <IdolList idols={chartData} />
-        </TabContent>  
+          <IdolList idols={chartData} isLoading={isLoading} />
+        </TabContent>
       </MonthlyChartContainer>
-
     </>
-  )
-
+  );
 };
 
 export default MonthlyChart;
