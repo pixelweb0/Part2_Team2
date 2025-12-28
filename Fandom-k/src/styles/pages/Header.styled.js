@@ -4,6 +4,7 @@ import { palette } from '../Palette.styled';
 import profileImg from '../../assets/images/ProfileImg.png';
 import BgLendingTop from '../../images/BgLendingTop.png';
 
+
 export const HeaderWrap = styled.header`
   position: sticky;
   top: 0;
