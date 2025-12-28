@@ -4,7 +4,7 @@ import FavoriteIdolList from './components/FavoriteIdolList.jsx';
 import Header from '../include/Header.jsx';
 import { getList } from '../../API/MyPageList.js';
 
-const MyPage = () => {
+const mypage = () => {
   const [selectedIds, setSelectedIds] = useState([]); // 현재 체크된 ID들
   const [favoriteIdolDetails, setFavoriteIdolDetails] = useState([]); //관심있는 아이돌 상세정보(id 비교)
   const [favorites, setFavorites] = useState([]); // 상단 관심 목록
@@ -69,4 +69,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default mypage;
