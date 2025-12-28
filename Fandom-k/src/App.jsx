@@ -18,7 +18,6 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/list" element={<ListPage />} />
             <Route path="/MyPage" element={<MyPage />} />
-
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
