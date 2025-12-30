@@ -4,6 +4,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import Landing from './pages/Landing.jsx';
 import ListPage from './pages/ListPage/index';
 import MyPage from './pages/MyPage/index.jsx';
+
 import { CreditProvider } from './contexts/CreditContext';
 
 function App() {
