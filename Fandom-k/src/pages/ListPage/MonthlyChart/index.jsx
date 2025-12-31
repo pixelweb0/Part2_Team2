@@ -29,12 +29,10 @@ const MonthlyChart = () => {
   const [isVoteIdolOpen, setIsVoteIdolOpen] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
-  const handleVoteIdol = (idolId) => {
+  const handleVoteIdol = (updatedIdol) => {
     setCharts((prevCharts) =>
       prevCharts.map((idol) =>
-        idol.id === idolId
-          ? { ...idol, totalVotes: Number(idol.totalVotes ?? 0) + 1 }
-          : idol
+        idol.id === updatedIdol.id ? updatedIdol : idol
       )
     );
   }
