@@ -18,6 +18,7 @@ import BaseModal from '../../../../components/BaseModal';
 // import creditImg from '../../../../assets/icons/IconCredit.svg';
 import IconCredit from '../../../../assets/images/IconCredit';
 import { useCreditActions, useCreditValue } from '../../../../contexts/CreditContext';
+import { donate } from '../../../../API/Donation';
 
 function DonationModal({ isOpen, onClose, donationData, onDonateSuccess }) {
   const credit = useCreditValue();
@@ -26,18 +27,22 @@ function DonationModal({ isOpen, onClose, donationData, onDonateSuccess }) {
   const isDisabled = !donateAmount || donateAmount <= 0;
   const [error, setError] = useState('');
   const [modalStep, setModalStep] = useState('donation');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
       setDonateAmount('');
       setError('');
       setModalStep('donation');
+      setIsSubmitting(false);
     }
   }, [isOpen]);
 
   if (!isOpen || !donationData) return null;
 
-  const handleDonate = () => {
+  const handleDonate = async () => {
+    if (isSubmitting) return;
+
     const amount = Number(donateAmount);
 
     if (!amount || amount <= 0) {
@@ -48,9 +53,21 @@ function DonationModal({ isOpen, onClose, donationData, onDonateSuccess }) {
       setError('갖고 있는 크레딧보다 더 많이 후원할 수 없습니다!');
       return;
     }
-    updateCredit(prev => prev - amount);
-    onDonateSuccess(amount);
-    setModalStep('success');
+    try {
+      setIsSubmitting(true);
+
+      await donate({
+        donationId: donationData.id, 
+        amount: amount
+      });
+      updateCredit(credit - amount);
+      onDonateSuccess(amount);
+      setModalStep('success');
+    } catch (e) {
+      setError('후원에 실패했습니다.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClose = () => {
@@ -90,7 +107,7 @@ function DonationModal({ isOpen, onClose, donationData, onDonateSuccess }) {
             value={donateAmount}
             placeholder="크레딧 입력"
             onChange={handleChange}
-            error={!!error}
+            $error={!!error}
             errorMessage={error}
           />
 
@@ -106,8 +123,8 @@ function DonationModal({ isOpen, onClose, donationData, onDonateSuccess }) {
             <ErrorSlot>{error && <ErrorMessage>{error}</ErrorMessage>}</ErrorSlot>
           </InputWrap> */}
 
-          <DonateButton onClick={handleDonate} disabled={!!error || isDisabled}>
-            후원하기
+          <DonateButton onClick={handleDonate} disabled={!!error || isDisabled || isSubmitting}>
+            {isSubmitting ? '후원 중...' : '후원하기'}
           </DonateButton>
         </>
       )}
