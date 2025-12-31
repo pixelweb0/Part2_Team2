@@ -25,6 +25,7 @@ import CheckImg from '../../../../assets/icons/IconCheck.svg';
 import IconCredit from '../../../../assets/images/IconCredit';
 import { useCreditActions, useCreditValue } from '../../../../contexts/CreditContext';
 import { voteIdol } from '../../../../API/Chart';
+import { useEffect } from 'react';
 
 function VoteModal({ isOpen, onClose, idols, onVote }) {
   const credit = useCreditValue();
@@ -32,6 +33,7 @@ function VoteModal({ isOpen, onClose, idols, onVote }) {
 
   const [selectedIdol, setSelectedIdol] = useState(null);
   const [ModalStep, setModalStep] = useState('vote');
+  const [isSubmitting , setIsSubmitting] = useState(false);
   const modalSize = {
     vote: {
       width: '525px',
@@ -45,24 +47,39 @@ function VoteModal({ isOpen, onClose, idols, onVote }) {
   };
 
   const handleVote = async () => {
+    if (isSubmitting) return;
     if (!selectedIdol) return;
     if (credit < 1000) return setModalStep('shortage');
 
     try {
+      setIsSubmitting(true);
+
       const result = await voteIdol({ idolId: selectedIdol });
       updateCredit(credit - 1000);
       onVote(result.idol);
       setModalStep('success');
     } catch (e) {
       console.error(e);
+    } finally {
+      setIsSubmitting(false)
     }
   };
 
   const handleClose = () => {
     setModalStep('vote');
     setSelectedIdol(null);
+    setIsSubmitting(false);
     onClose();
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      setModalStep('vote');
+      setSelectedIdol(null);
+      setIsSubmitting(false);
+    }
+  }, [isOpen]);
+
 
   if (!isOpen || !idols) return null;
   const genderTitle = idols[0]?.gender === 'female' ? '여자' : '남자';
@@ -95,8 +112,8 @@ function VoteModal({ isOpen, onClose, idols, onVote }) {
               </IdolItem>
             ))}
           </IdolListContent>
-          <VoteButton disabled={!selectedIdol} onClick={handleVote}>
-            투표하기
+          <VoteButton disabled={!selectedIdol || isSubmitting} onClick={handleVote}>
+            {isSubmitting ? '투표 중...' : '투표하기'}
           </VoteButton>
           <GuideLine>
             투표 시 <Highlight>1000 크레딧</Highlight>이 소모됩니다.
