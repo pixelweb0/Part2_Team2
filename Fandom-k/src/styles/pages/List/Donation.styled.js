@@ -178,6 +178,7 @@ export const ProgressContainer = styled.div`
 
     background: ${palette.white};
     border-radius: 1px;
+    overflow: hidden;
   }
   .bar-fill {
     height: 100%;
